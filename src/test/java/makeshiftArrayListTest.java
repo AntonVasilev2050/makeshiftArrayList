@@ -8,7 +8,7 @@ class makeshiftArrayListTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        // init
+        makeshiftArrayList = new makeshiftArrayListImpl();
         for (int i = 0; i < 100; i++) {
             makeshiftArrayList.add("string-" + i);
         }
@@ -36,7 +36,7 @@ class makeshiftArrayListTest {
 
     @Test
     public void whenNonExistentStringRemovedThenReturnFalse(){
-        String stringForTest = "testString";
+        String stringForTest = "Test String";
         assertFalse(makeshiftArrayList.remove(stringForTest));
         assertEquals(100, makeshiftArrayList.size());
     }
@@ -58,5 +58,34 @@ class makeshiftArrayListTest {
                 ()->{
                     makeshiftArrayList.get(100);
                 });
+    }
+
+    @Test
+    public void methodGetReturnedRightValue(){
+        assertEquals("string-3", makeshiftArrayList.get(3));
+    }
+
+    @Test
+    public void insertIntoMiddle(){
+        String stringForTest = "Test String";
+        makeshiftArrayList.add(stringForTest, 50);
+        String stringFromList = makeshiftArrayList.get(50);
+        assertEquals("Test String", stringFromList);
+    }
+
+    @Test
+    public void insertIntoFirstPosition(){
+        String stringForTest = "Test String";
+        makeshiftArrayList.add(stringForTest, 0);
+        String stringFromList = makeshiftArrayList.get(0);
+        assertEquals("Test String", stringFromList);
+    }
+
+    @Test
+    public void insertIntoLastPosition(){
+        String stringForTest = "Test String";
+        makeshiftArrayList.add(stringForTest, 100);
+        String stringFromList = makeshiftArrayList.get(100);
+        assertEquals("Test String", stringFromList);
     }
 }
