@@ -40,4 +40,23 @@ class makeshiftArrayListTest {
         assertFalse(makeshiftArrayList.remove(stringForTest));
         assertEquals(100, makeshiftArrayList.size());
     }
+
+    @Test
+    public void whenListClearedThenSizeMustBeZero(){
+        makeshiftArrayList.clear();
+        assertEquals(0, makeshiftArrayList.size());
+    }
+
+//    @Test(expected = IndexOutOfBoundsException.class)
+//    public void whenIndexOutOfBoundsThenThrowException(){
+//        makeshiftArrayList.get(100);
+//    }
+
+    @Test
+    public void whenIndexOutOfBoundsThenThrowException() {
+        assertThrows(IndexOutOfBoundsException.class,
+                ()->{
+                    makeshiftArrayList.get(100);
+                });
+    }
 }
