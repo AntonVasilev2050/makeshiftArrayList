@@ -13,16 +13,19 @@ public class makeshiftArrayListImpl implements makeshiftArrayList{
 
     @Override
     public void add(String string) {
-        if(size >= array.length){
-            array = Arrays.copyOf(array, array.length * 2);
-        }
+        checkAndIncreaseArray();
         array[size] = string;
         size++;
     }
 
     @Override
     public void add(String string, int index) {
-
+        checkAndIncreaseArray();
+        for (int i = size; i > index; i--){
+            array[i] = array[i - 1];
+        }
+        array[index] = string;
+        size++;
     }
 
     @Override
@@ -59,6 +62,12 @@ public class makeshiftArrayListImpl implements makeshiftArrayList{
     private void checkIndex(int index){
         if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void checkAndIncreaseArray(){
+        if(size >= array.length){
+            array = Arrays.copyOf(array, array.length * 2);
         }
     }
 }
