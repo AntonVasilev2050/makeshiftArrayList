@@ -1,8 +1,10 @@
+import java.sql.Array;
 import java.util.Arrays;
 
 public class MakeshiftArrayListImpl implements MakeshiftArrayList {
 
-    private String[] array = new String[10];
+//    private String[] array = new String[10];
+    private String[] array;
     int size = 0;
 
     @Override
@@ -62,6 +64,9 @@ public class MakeshiftArrayListImpl implements MakeshiftArrayList {
     }
 
     private void checkAndIncreaseArray(){
+        if (array == null){
+            array = new String[10];
+        }
         if(size >= array.length){
             array = Arrays.copyOf(array, array.length * 2);
         }
