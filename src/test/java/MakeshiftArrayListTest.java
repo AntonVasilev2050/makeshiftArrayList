@@ -2,13 +2,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class makeshiftArrayListTest {
+class MakeshiftArrayListTest {
 
-    private makeshiftArrayList makeshiftArrayList;
+    private MakeshiftArrayList makeshiftArrayList;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        makeshiftArrayList = new makeshiftArrayListImpl();
+        makeshiftArrayList = new MakeshiftArrayListImpl();
         for (int i = 0; i < 100; i++) {
             makeshiftArrayList.add("string-" + i);
         }

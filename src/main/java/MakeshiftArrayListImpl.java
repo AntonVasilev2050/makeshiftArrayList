@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class makeshiftArrayListImpl implements makeshiftArrayList{
+public class MakeshiftArrayListImpl implements MakeshiftArrayList {
 
     private String[] array = new String[10];
     int size = 0;
@@ -21,9 +21,7 @@ public class makeshiftArrayListImpl implements makeshiftArrayList{
     @Override
     public void add(String string, int index) {
         checkAndIncreaseArray();
-        for (int i = size; i > index; i--){
-            array[i] = array[i - 1];
-        }
+        if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = string;
         size++;
     }
@@ -41,9 +39,7 @@ public class makeshiftArrayListImpl implements makeshiftArrayList{
     @Override
     public boolean removeAt(int index) {
         checkIndex(index);
-        for (int i = index; i < size - 1; i++){
-            array[i] = array[i + 1];
-        }
+        if (size - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, size - 1 - index);
         size--;
         return true;
     }

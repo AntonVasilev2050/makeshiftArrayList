@@ -1,4 +1,4 @@
-public interface makeshiftArrayList {
+public interface MakeshiftArrayList {
     String get (int index);
     void add(String string);
     void add(String string, int index);
