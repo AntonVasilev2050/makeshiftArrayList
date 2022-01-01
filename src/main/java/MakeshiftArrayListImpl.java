@@ -21,9 +21,7 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
     @Override
     public void add(E e, int index) {
         checkAndIncreaseArray();
-        for (int i = size; i > index; i--) {
-            array[i] = array[i - 1];
-        }
+        if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = e;
         size++;
     }
@@ -41,9 +39,7 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
     @Override
     public boolean removeAt(int index) {
         checkIndex(index);
-        for (int i = index; i < size - 1; i++) {
-            array[i] = array[i + 1];
-        }
+        if (size - 1 - index >= 0) System.arraycopy(array, index + 1, array, index, size - 1 - index);
         size--;
         return true;
     }
@@ -55,7 +51,7 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
 
     @Override
     public void clear() {
-        array = new E[10];
+        array = (E[]) new Object[10];
         size = 0;
     }
 
@@ -66,6 +62,9 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
     }
 
     private void checkAndIncreaseArray() {
+        if(array == null){
+            array = (E[]) new Object[10];
+        }
         if (size >= array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
