@@ -2,9 +2,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MakeshiftArrayListTest {
+class MakeshiftListTest {
 
-    private MakeshiftArrayList<String> makeshiftArrayList;
+    private MakeshiftList<String> makeshiftArrayList;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {

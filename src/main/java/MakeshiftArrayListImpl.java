@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
+public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
 
     private E[] array;
     int size = 0;
@@ -13,14 +13,14 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
 
     @Override
     public void add(E e) {
-        checkAndIncreaseArray();
+        checkArrayLengthAndIncreaseArray();
         array[size] = e;
         size++;
     }
 
     @Override
     public void add(E e, int index) {
-        checkAndIncreaseArray();
+        checkArrayLengthAndIncreaseArray();
         if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = e;
         size++;
@@ -61,7 +61,7 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftArrayList<E> {
         }
     }
 
-    private void checkAndIncreaseArray() {
+    private void checkArrayLengthAndIncreaseArray() {
         if(array == null){
             array = (E[]) new Object[10];
         }
