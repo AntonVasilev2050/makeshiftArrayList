@@ -1,7 +1,7 @@
 /** Самодельный ArrayList. Основные методы в учебных целях.
  * @author Anton Vasilev
  * @version 1.0
- * @param <E>
+ * @param <E> обобщенный тип
  */
 public interface MakeshiftList<E> {
     /**
