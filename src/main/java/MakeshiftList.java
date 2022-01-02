@@ -8,8 +8,9 @@ public interface MakeshiftList<E> {
      * Получение элемента по индексу
      * @param index индекс элемента
      * @return возвращает элемент из MakeshiftArrayList по индексу
-     * Если элемента с таким index не существует,
-     * будет выброшено исключение IndexOutOfBoundsException
+     *
+     * @throws IndexOutOfBoundsException,
+     * если элемента с таким index не существует.
      */
     E get (int index);
 
@@ -38,8 +39,9 @@ public interface MakeshiftList<E> {
      * Удаление элемента по заданному индексу
      * @param index индекс удаляемого элемента
      * @return вернет true если удаление прошло успешно
-     * Если элемента с таким index не существует,
-     * будет выброшено исключение IndexOutOfBoundsException
+     *
+     * @throws IndexOutOfBoundsException,
+     * если элемента с таким index не существует.
      */
     boolean removeAt(int index);
 
