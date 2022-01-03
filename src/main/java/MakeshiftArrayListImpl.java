@@ -1,6 +1,7 @@
 import java.util.Arrays;
+import java.util.Collections;
 
-public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
+public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
     private E[] array;
     int size = 0;
@@ -55,6 +56,12 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
         size = 0;
     }
 
+    @Override
+    public MakeshiftList<E> sort(MakeshiftList<E> makeshiftList) {
+        return null;
+    }
+
+
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -68,5 +75,12 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
         if (size >= array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MakeshiftArrayListImpl{" +
+                "array=" + Arrays.toString(array) +
+                '}';
     }
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 /** Самодельный List. Основные методы в учебных целях.
  * @author Anton Vasilev
  * @version 1.0
@@ -55,4 +57,6 @@ public interface MakeshiftList<E> {
      * Удаление всех элементов из коллекции
      */
     void clear();
+
+    MakeshiftList<E> sort(MakeshiftList<E> makeshiftList);
 }
