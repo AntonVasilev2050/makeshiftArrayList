@@ -58,5 +58,5 @@ public interface MakeshiftList<E> {
      */
     void clear();
 
-    MakeshiftList<E> sort(MakeshiftList<E> makeshiftList);
+    void sort(MakeshiftList<E> makeshiftList);
 }
