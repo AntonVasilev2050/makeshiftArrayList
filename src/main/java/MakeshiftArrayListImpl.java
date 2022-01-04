@@ -79,8 +79,8 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
         }
     }
 
-    public void quickSort(int[] array, int low, int high) {
-        if (array.length == 0)
+    public void quickSort(MakeshiftList<E> array, int low, int high) {
+        if (array.size() == 0)
             return;//завершить выполнение если длина массива равна 0
 
         if (low >= high)
@@ -88,23 +88,23 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
         // выбрать опорный элемент
         int middle = low + (high - low) / 2;
-        int opora = array[middle];
+        E opora = array.get(middle);
 
         // разделить на подмассивы, который больше и меньше опорного элемента
         int i = low, j = high;
         while (i <= j) {
-            while (array[i] < opora) {
+            while (array.get(i) < opora) {
                 i++;
             }
 
-            while (array[j] > opora) {
+            while (array.get(j) > opora) {
                 j--;
             }
 
             if (i <= j) {//меняем местами
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+                int temp = array.get(i);
+                array.get(i) = array.get(j);
+                array.get(j) = temp;
                 i++;
                 j--;
             }
