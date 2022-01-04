@@ -57,6 +57,12 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
     }
 
     @Override
+    public void set(E e, int index) {
+        checkIndex(index);
+        array[index] = e;
+    }
+
+    @Override
     public void sort(MakeshiftList<E> makeshiftList, Comparator<E> comparator) {
         int low = 0;
         int high = makeshiftList.size() - 1;
@@ -104,8 +110,8 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
             if (i <= j) {//меняем местами
                 E temp = array.get(i);
-                array.add(array.get(j), i);
-                array.add(temp, j);
+                array.set(array.get(j), i);
+                array.set(temp, j);
                 i++;
                 j--;
             }
@@ -117,6 +123,40 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
         if (high > i)
             quickSort(array, i, high, comparator);
+    }
+
+    public void quickSortTwo(MakeshiftList<E> array, int leftBorder, int rightBorder, Comparator<E> comparator) {
+        int leftMarker = leftBorder;
+        int rightMarker = rightBorder;
+        E pivot = (array.get((leftMarker + rightMarker) / 2));
+        do {
+            while (comparator.compare(array.get(leftMarker), pivot) == -1){
+                leftMarker++;
+            }
+            while (comparator.compare(array.get(rightMarker), pivot) == 1){
+                rightMarker--;
+            }
+            // Проверим, не нужно обменять местами элементы, на которые указывают маркеры
+            if (leftMarker <= rightMarker) {
+                // Левый маркер будет меньше правого только если мы должны выполнить swap
+                if (leftMarker < rightMarker) {
+                    E tmp = array.get(leftMarker);
+                    array.set(array.get(rightMarker), leftMarker);
+                    array.set(tmp, rightMarker);
+                }
+                // Сдвигаем маркеры, чтобы получить новые границы
+                leftMarker++;
+                rightMarker--;
+            }
+        } while (leftMarker <= rightMarker);
+
+        // Выполняем рекурсивно для частей
+        if (leftMarker < rightBorder) {
+            quickSort(array, leftMarker, rightBorder, comparator);
+        }
+        if (leftBorder < rightMarker) {
+            quickSort(array, leftBorder, rightMarker, comparator);
+        }
     }
 
     @Override

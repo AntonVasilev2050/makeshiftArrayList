@@ -59,6 +59,8 @@ public interface MakeshiftList<E> {
      */
     void clear();
 
+    void set(E e, int index);
+
     void sort(MakeshiftList<E> makeshiftList, Comparator<E> comparator);
 
 }
