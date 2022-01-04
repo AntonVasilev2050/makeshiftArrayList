@@ -11,6 +11,7 @@ public class TestSort {
         list.add(new Person(1,"Name1"));
         list.add(new Person(3,"Name3333"));
         list.add(new Person(2,"Name22"));
+        list.add(new Person(6,"Name6"));
         list.add(new Person(4,"Name"));
 
         System.out.println("Before sort");

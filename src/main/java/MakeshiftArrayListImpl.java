@@ -67,7 +67,7 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
         int low = 0;
         int high = makeshiftList.size() - 1;
 
-        quickSort(makeshiftList, low, high, comparator);
+        quickSortTwo(makeshiftList, low, high, comparator);
     }
 
 
