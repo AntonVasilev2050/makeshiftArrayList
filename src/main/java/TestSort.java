@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class TestSort {
     public static void main(String[] args) {
 
@@ -8,7 +10,16 @@ public class TestSort {
         list.add(new Person(2,"Name22"));
         list.add(new Person(4,"Name"));
 
-        list.sort(list);
+        list.sort(list, new Comparator<Person>() {
+            @Override
+            public int compare(Person o1, Person o2) {
+                if(o1.getId() > o2.getId()){
+                    return 1;
+                }else if(o1.getId() < o2.getId()){
+                    return -1;
+                }else return 0;
+            }
+        });
 
         System.out.println("Sorted list: " + list);
     }
@@ -26,6 +37,8 @@ class Person implements Comparable<Person> {
         this.id = id;
         this.name = name;
     }
+
+
 
     @Override
     public String toString() {

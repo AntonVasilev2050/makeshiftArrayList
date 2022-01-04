@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
@@ -56,11 +57,11 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
     }
 
     @Override
-    public void sort(MakeshiftList<E> makeshiftList) {
+    public void sort(MakeshiftList<E> makeshiftList, Comparator<E> comparator) {
         int low = 0;
         int high = makeshiftList.size() - 1;
 
-        quickSort(makeshiftList, low, high);
+        quickSort(makeshiftList, low, high, comparator);
     }
 
 
@@ -79,7 +80,8 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
         }
     }
 
-    public void quickSort(MakeshiftList<E> array, int low, int high) {
+
+    public void quickSort(MakeshiftList<E> array, int low, int high, Comparator<E> comparator) {
         if (array.size() == 0)
             return;//завершить выполнение если длина массива равна 0
 
@@ -93,18 +95,17 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
         // разделить на подмассивы, который больше и меньше опорного элемента
         int i = low, j = high;
         while (i <= j) {
-            while (array.get(i) < opora) {
+            while (comparator.compare(array.get(i), opora) == -1){
                 i++;
             }
-
-            while (array.get(j) > opora) {
+            while (comparator.compare(array.get(j), opora) == 1){
                 j--;
             }
 
             if (i <= j) {//меняем местами
-                int temp = array.get(i);
-                array.get(i) = array.get(j);
-                array.get(j) = temp;
+                E temp = array.get(i);
+                array.add(array.get(j), i);
+                array.add(temp, j);
                 i++;
                 j--;
             }
@@ -112,10 +113,10 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E>{
 
         // вызов рекурсии для сортировки левой и правой части
         if (low < j)
-            quickSort(array, low, j);
+            quickSort(array, low, j, comparator);
 
         if (high > i)
-            quickSort(array, i, high);
+            quickSort(array, i, high, comparator);
     }
 
     @Override

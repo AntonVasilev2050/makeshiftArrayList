@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 
 /** Самодельный List. Основные методы в учебных целях.
@@ -58,5 +59,6 @@ public interface MakeshiftList<E> {
      */
     void clear();
 
-    void sort(MakeshiftList<E> makeshiftList);
+    void sort(MakeshiftList<E> makeshiftList, Comparator<E> comparator);
+
 }
