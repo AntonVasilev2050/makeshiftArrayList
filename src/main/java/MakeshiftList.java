@@ -68,6 +68,7 @@ public interface MakeshiftList<E> {
      *
      * @param e     устанавливаемый элемент
      * @param index индекс элемента который будет установлен
+     * @throws IndexOutOfBoundsException если элемента с таким index не существует.
      */
     void set(E e, int index);
 
