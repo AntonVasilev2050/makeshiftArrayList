@@ -1,37 +1,36 @@
-import java.sql.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 
-public class MakeshiftArrayListImpl implements MakeshiftArrayList {
+public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
 
-//    private String[] array = new String[10];
-    private String[] array;
+    private E[] array;
     int size = 0;
 
     @Override
-    public String get(int index) {
+    public E get(int index) {
         checkIndex(index);
         return array[index];
     }
 
     @Override
-    public void add(String string) {
-        checkAndIncreaseArray();
-        array[size] = string;
+    public void add(E e) {
+        checkArrayLengthAndIncreaseArray();
+        array[size] = e;
         size++;
     }
 
     @Override
-    public void add(String string, int index) {
-        checkAndIncreaseArray();
+    public void add(E e, int index) {
+        checkArrayLengthAndIncreaseArray();
         if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
-        array[index] = string;
+        array[index] = e;
         size++;
     }
 
     @Override
-    public boolean remove(String string) {
-        for (int i = 0; i < size; i++){
-            if(array[i].equals(string)){
+    public boolean remove(E e) {
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(e)) {
                 return removeAt(i);
             }
         }
@@ -53,22 +52,35 @@ public class MakeshiftArrayListImpl implements MakeshiftArrayList {
 
     @Override
     public void clear() {
-        array = new String[10];
+        array = (E[]) new Object[10];
         size = 0;
     }
 
-    private void checkIndex(int index){
-        if (index < 0 || index >= size){
+    @Override
+    public void set(E e, int index) {
+        checkIndex(index);
+        array[index] = e;
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }
 
-    private void checkAndIncreaseArray(){
-        if (array == null){
-            array = new String[10];
+    private void checkArrayLengthAndIncreaseArray() {
+        if (array == null) {
+            array = (E[]) new Object[10];
         }
-        if(size >= array.length){
+        if (size >= array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MakeshiftArrayListImpl{" +
+                "array=" + Arrays.toString(array) +
+                '}';
     }
 }
