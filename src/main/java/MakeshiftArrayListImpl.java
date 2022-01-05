@@ -9,9 +9,17 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
     public MakeshiftArrayListImpl() {
     }
 
+    /**
+     * Создает коллекцию с заданным начальным размером
+     * @param initCapacity размер коллекции при инициализации
+     *
+     * @throws IllegalArgumentException будет выброшено,
+     * при попытки инициализировать коллекцию размером меньше 1.
+     */
     public MakeshiftArrayListImpl(int initCapacity) {
         if (initCapacity < 1){
-            initCapacity = 1;
+            throw new IllegalArgumentException(
+                    "Попытка инициализировать коллекцию с начальным размером меньше единицы");
         }
         this.array =  (E[]) new Object[initCapacity];
     }
