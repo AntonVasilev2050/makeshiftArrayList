@@ -3,7 +3,7 @@ import java.util.Comparator;
 public class TestSort {
     public static void main(String[] args) {
 
-        MakeshiftList<Person> list = new MakeshiftArrayListImpl<>();
+        MakeshiftList<Person> list = new MakeshiftArrayListImpl<>(20);
 
         list.add(new Person(5, "Name5"));
         list.add(new Person(7, "Name07"));

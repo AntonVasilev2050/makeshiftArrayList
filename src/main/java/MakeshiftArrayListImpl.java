@@ -6,6 +6,13 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
     private E[] array;
     int size = 0;
 
+    public MakeshiftArrayListImpl() {
+    }
+
+    public MakeshiftArrayListImpl(int initCapacity) {
+        this.array =  (E[]) new Object[initCapacity];
+    }
+
     @Override
     public E get(int index) {
         checkIndex(index);

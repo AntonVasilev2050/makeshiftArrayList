@@ -111,6 +111,7 @@ class MakeshiftListTest {
         makeshiftArrayList.add(stringForTest, 50);
         String stringFromList = makeshiftArrayList.get(50);
         assertEquals("Test String", stringFromList);
+        assertEquals(101, makeshiftArrayList.size());
     }
 
     /**
@@ -133,5 +134,18 @@ class MakeshiftListTest {
         makeshiftArrayList.add(stringForTest, 100);
         String stringFromList = makeshiftArrayList.get(100);
         assertEquals("Test String", stringFromList);
+    }
+
+    /**
+     * Проверяем установку элемента по индексу в середину коллекции
+     * Размер коллекции после вставки не меняется.
+     */
+    @Test
+    public void setIntoMiddle(){
+        String stringForTest = "Test String";
+        makeshiftArrayList.set(stringForTest, 50);
+        String stringFromList = makeshiftArrayList.get(50);
+        assertEquals("Test String", stringFromList);
+        assertEquals(100, makeshiftArrayList.size());
     }
 }
