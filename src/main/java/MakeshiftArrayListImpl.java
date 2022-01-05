@@ -10,6 +10,9 @@ public class MakeshiftArrayListImpl<E> implements MakeshiftList<E> {
     }
 
     public MakeshiftArrayListImpl(int initCapacity) {
+        if (initCapacity < 1){
+            initCapacity = 1;
+        }
         this.array =  (E[]) new Object[initCapacity];
     }
 
